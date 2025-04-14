@@ -79,5 +79,5 @@ volumes:
 Или добавить в строку запуска отдельного контейнера:
 
 ```
--v ./InfoBase/:/InfoBase/
+-v /mnt/docker/docker-apache-1c/InfoBase/:/InfoBase/
 ```
