@@ -56,7 +56,7 @@ docker build --tag apache-1c:latest .
 
 Запуск контейнера:
 ```
-docker run -dit --name apache-1c -p 5080:80 -v ./InfoBase/:/InfoBase/ httpd:2.4
+docker run -dit --name apache-1c -p 5080:80 -v /mnt/docker/docker-apache-1c/InfoBase/:/InfoBase/ httpd:2.4
 ```
 
 # Запуск Apache 2.4 с файловой базой
