@@ -47,6 +47,37 @@
 
 2. Основное отличие в способе запуска контейнера без использования docker-compose:
 Для запуска файловой версии БД необходимо выполнить следующую команду (измените в зависимости от ваших настроек):
+
+Сборка контейнера:
+
 ```
-docker run -dit --name apache-1c -p 5080:80 -v /mnt/Volume4/:/usr/local/apache2/htdocs/ httpd:2.4
+docker build --tag apache-1c:latest .
+```
+
+Запуск контейнера:
+```
+docker run -dit --name apache-1c -p 5080:80 -v ./InfoBase/:/InfoBase/ httpd:2.4
+```
+
+# Запуск Apache 2.4 с файловой базой
+
+1. В файле `default.vrd` необходимо заменить путь к БД:
+
+```
+ib="File=/InfoBase"
+```
+
+2. Подключить внешний том с базой к контейнеру:
+
+Добавить строку в файл `docker-compose.yml`:
+
+```
+volumes:
+  - "./InfoBase:/InfoBase"
+```
+
+Или добавить в строку запуска отдельного контейнера:
+
+```
+-v ./InfoBase/:/InfoBase/
 ```
