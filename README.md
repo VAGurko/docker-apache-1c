@@ -16,7 +16,7 @@
 
 8. Запустите командой `docker-compose up -d --build`
 
-Теперь можно проверить в бразуре: `http://<ip адрес linux хоста>/BuhBase/` или  `http://<ip адрес linux хоста>:<порт на linux хосте как в docker-compose.yml>/<путь указанный в httpd.conf>/`
+Теперь можно проверить в браузере: `http://<ip адрес linux хоста>/BuhBase/` или  `http://<ip адрес linux хоста>:<порт на linux хосте как в docker-compose.yml>/<путь указанный в httpd.conf>/`
 
 
 ## При обновлении версии платформы 1C:
