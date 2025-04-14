@@ -4,11 +4,10 @@ FROM httpd:2.4
 MAINTAINER Vadim Gurko <va.gurko@yandex.ru>
 
 # Копируем дистрибутив в директорию dist
-COPY deb64.tar.gz /dist/deb64.tar.gz
+COPY ./src/* /dist/
 
-# Разархивируем дистрибутив
-RUN tar -xzf /dist/deb64.tar.gz -C /dist \
-  # и устанавливаем пакеты 1С в систему внутри контейнера
+# Устанавливаем зависимости и пакеты 1С в систему внутри контейнера
+RUN /dist/dependencies.sh \
   && dpkg -i /dist/*.deb \
   # и тут же удаляем исходные deb файлы дистрибутива, которые нам уже не нужны
   && rm /dist/*.deb
