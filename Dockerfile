@@ -4,11 +4,10 @@ FROM httpd:2.4
 MAINTAINER Vadim Gurko <va.gurko@yandex.ru>
 
 # Копируем дистрибутив в директорию dist
-COPY deb64.tar.gz /dist/deb64.tar.gz
+COPY ./src/* /dist/
 
-# Разархивируем дистрибутив
-RUN tar -xzf /dist/deb64.tar.gz -C /dist \
-  # и устанавливаем пакеты 1С в систему внутри контейнера
+# Устанавливаем зависимости и пакеты 1С в систему внутри контейнера
+RUN /dist/dependencies.sh \
   && dpkg -i /dist/*.deb \
   # и тут же удаляем исходные deb файлы дистрибутива, которые нам уже не нужны
   && rm /dist/*.deb
@@ -17,9 +16,9 @@ RUN tar -xzf /dist/deb64.tar.gz -C /dist \
 COPY httpd.conf /usr/local/apache2/conf/httpd.conf
 
 # Копируем внутрь контейнера заранее подготовленный конфиг с настройками подключения к серверу 1С
-COPY default.vrd /usr/local/apache2/htdocs/Base1С/default.vrd
+COPY default.vrd /usr/local/apache2/htdocs/Base1C/default.vrd
 
 # Опционально у нас может быть и вторая информационная база со своим файлом настроке подлючения antother_base.vrd
-# Копируем в отдельную директорию AnotherBase1С
+# Копируем в отдельную директорию AnotherBase1C
 # Также нужно настроить эту директорию в фонфиге для Apache: httpd.conf (см пример в этом репозитории)
-# COPY antother_base.vrd /usr/local/apache2/htdocs/AnotherBase1С/default.vrd
+# COPY antother_base.vrd /usr/local/apache2/htdocs/AnotherBase1C/default.vrd
