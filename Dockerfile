@@ -1,7 +1,7 @@
 FROM httpd:2.4
 # Данный образ базируется на стандартном образе Debian+Apache 2.4: https://store.docker.com/images/httpd
 
-MAINTAINER Petr Myazin <petr.myazin@gmail.com>
+MAINTAINER Vadim Gurko <va.gurko@yandex.ru>
 
 # Копируем дистрибутив в директорию dist
 COPY deb64.tar.gz /dist/deb64.tar.gz
@@ -17,9 +17,9 @@ RUN tar -xzf /dist/deb64.tar.gz -C /dist \
 COPY httpd.conf /usr/local/apache2/conf/httpd.conf
 
 # Копируем внутрь контейнера заранее подготовленный конфиг с настройками подключения к серверу 1С
-COPY default.vrd /usr/local/apache2/htdocs/BuhBase/default.vrd
+COPY default.vrd /usr/local/apache2/htdocs/Base1С/default.vrd
 
 # Опционально у нас может быть и вторая информационная база со своим файлом настроке подлючения antother_base.vrd
-# Копируем в отдельную директорию AnotherBuhBase
+# Копируем в отдельную директорию AnotherBase1С
 # Также нужно настроить эту директорию в фонфиге для Apache: httpd.conf (см пример в этом репозитории)
-# COPY antother_base.vrd /usr/local/apache2/htdocs/AnotherBuhBase/default.vrd
+# COPY antother_base.vrd /usr/local/apache2/htdocs/AnotherBase1С/default.vrd
