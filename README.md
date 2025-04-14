@@ -81,3 +81,8 @@ volumes:
 ```
 -v /mnt/docker/docker-apache-1c/InfoBase/:/InfoBase/
 ```
+
+3. Изменить в файле `httpd.conf` архитектуру приложения (если требуется)
+
+x86_64
+arm64
